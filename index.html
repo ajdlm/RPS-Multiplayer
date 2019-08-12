@@ -9,6 +9,10 @@
 
         <script src="assets/javascript/game.js"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -25,6 +29,27 @@
 
     <body>
         <h1 id="game-title" class="py-4 border-bottom text-center">Rock, Paper, Scissors Online</h1>
+
+        <div class="modal" id="cant-play-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div id="cant-play-header" class="modal-header">
+                        <h2 class="modal-title text-white">Game Full</h2>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p>Sorry, but there are already two players in the game. Try joining again later.</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="cant-play-close" class="btn text-white" data-dismiss="modal">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="container my-5">
             <div id="game-div" class="d-none mt-5 pt-5">

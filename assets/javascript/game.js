@@ -14,7 +14,7 @@ $(document).ready(function () {
     var database = firebase.database();
 
     var myGlobal = {
-        players: 0,
+        players: 2,
         player1: false,
         player2: false,
         assignedRole: "not a player",
@@ -114,7 +114,7 @@ $(document).ready(function () {
             $("#wait-div").removeClass("d-none").append(greetingText, loaderGif, waitText);
         }
 
-        else if (myGlobals.players === 1 && !myGlobal.player2) {
+        else if (myGlobal.players === 1 && !myGlobal.player2) {
             myGlobal.assignedRole = "Player 2";
 
             myGlobal.player2 = true;
@@ -129,7 +129,7 @@ $(document).ready(function () {
             greetPlayer("2");
         }
 
-        else if (myGlobals.players === 1 && !myGlobal.player1) {
+        else if (myGlobal.players === 1 && !myGlobal.player1) {
             myGlobal.assignedRole = "Player 1";
 
             myGlobal.player1 = true;
@@ -145,9 +145,11 @@ $(document).ready(function () {
         }
 
         else {
+            //var cantPlay = $("<div>");
+            //cantPlay.addClass("modal").attr("tabindex", "-1").attr("role", "dialog").attr("")
             // do the modal thing
-        };
-    };
-});
 
+            jQuery("#cant-play-modal").modal("show");
+        };
+    });
 });

@@ -18,7 +18,6 @@ h2 {
 #game-title {
     border-width: .35rem !important;
     color: white;
-    background: rgba(97, 32, 85);
     border-color: white !important;
 
 }
@@ -31,4 +30,8 @@ h2 {
     width: 293px;
     border-width: 7px;
     font-size: 30px;
+}
+
+#game-title, #cant-play-header, #cant-play-close {
+    background: rgba(97, 32, 85);
 }
