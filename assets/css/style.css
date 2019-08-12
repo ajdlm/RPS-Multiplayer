@@ -1,0 +1,28 @@
+body {
+    font-family: "Palatino", sans-serif;
+    font-weight: bold;
+}
+
+/*.game-section {
+    background: grey;
+    border-radius: 15%;
+}*/
+
+h2 {
+    color: rgba(97, 32, 85);
+    font-weight: bolder;
+}
+
+.game-button {
+    max-height: 300px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#game-title {
+    border-width: .35rem !important;
+    color: white;
+    background: rgba(97, 32, 85);
+    border-color: white !important;
+
+}
