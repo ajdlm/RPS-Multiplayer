@@ -21,6 +21,63 @@ $(document).ready(function () {
         waitingForOpponent: false
     }
 
+    function startGame() {
+        $("#start-div").addClass("d-none");
+
+        $("#game-div").removeClass("d-none");
+    };
+
+    function getHype(x) {
+        $("#wait-div").empty();
+
+        var countDownText = $("<h2>");
+
+        if (x === 4) {
+            countDownText.text("Rock...");
+        }
+
+        else if (x === 3) {
+            countDownText.text("Paper...")
+        }
+
+        else if (x === 2) {
+            countDownText.text("Scissors...")
+        }
+
+        else {
+            countDownText.text("Shoot!")
+        };
+
+        $("#wait-div").append(countDownText);
+    };
+
+    function getReady() {
+        var countDown = 4;
+
+        var countTimer = setInterval(function () {
+            countDown--;
+
+            if (countDown > 0) {
+                getHype(countDown);
+            }
+
+            else if (countDown === 0) {
+                clearInterval(countTimer);
+                startGame();
+            };
+        }, 1000);
+    };
+
+    function greetPlayer(x) {
+        $("#wait-div").empty();
+
+        var letsStartText = $("<h2>");
+
+        letsStartText.text("Welcome to the game, Player " + x + "!")
+
+        setTimeout(getReady, 2000);
+    };
+
     database.ref().on("value", function (snapshot) {
 
     });
@@ -30,6 +87,13 @@ $(document).ready(function () {
             myGlobal.assignedRole = "Player 1";
 
             myGlobal.player1 = true;
+
+            myGlobal.players++;
+
+            database.ref().set({
+                player1: true,
+                players: myGlobal.players
+            });
 
             myGlobal.waitingForOpponent = true;
 
@@ -50,11 +114,40 @@ $(document).ready(function () {
             $("#wait-div").removeClass("d-none").append(greetingText, loaderGif, waitText);
         }
 
-        else {
-            $("#start-div").addClass("d-none");
+        else if (myGlobals.players === 1 && !myGlobal.player2) {
+            myGlobal.assignedRole = "Player 2";
 
-            $("#game-div").removeClass("d-none");
+            myGlobal.player2 = true;
+
+            myGlobal.players++;
+
+            database.ref().set({
+                player2: true,
+                players: myGlobal.players
+            });
+
+            greetPlayer("2");
+        }
+
+        else if (myGlobals.players === 1 && !myGlobal.player1) {
+            myGlobal.assignedRole = "Player 1";
+
+            myGlobal.player1 = true;
+
+            myGlobal.players++;
+
+            database.ref().set({
+                player1: true,
+                players: myGlobal.players
+            });
+
+            greetPlayer("1");
+        }
+
+        else {
+            // do the modal thing
         };
-    });
+    };
+});
 
 });
