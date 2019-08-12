@@ -1,5 +1,15 @@
 $(document).ready(function () {
-    var config = {
+    /*var config = {
+        apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
+        authDomain: "rock-paper-scisso.firebaseapp.com",
+        databaseURL: "https://rock-paper-scisso.firebaseio.com",
+        projectId: "rock-paper-scisso",
+        storageBucket: "rock-paper-scisso.appspot.com",
+        messagingSenderId: "1023291345456",
+        appId: "1:1023291345456:web:1b970f64f4f44529"
+    };*/
+
+    const config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
         authDomain: "rock-paper-scisso.firebaseapp.com",
         databaseURL: "https://rock-paper-scisso.firebaseio.com",
@@ -15,7 +25,7 @@ $(document).ready(function () {
 
     var myGlobal = {
         players: 2,
-        player1: false,
+        player1: true,
         player2: false,
         assignedRole: "not a player",
         waitingForOpponent: false
@@ -51,8 +61,16 @@ $(document).ready(function () {
         $("#wait-div").append(countDownText);
     };
 
+    function setToGlobal() {
+        database.ref().update({
+            player1: myGlobal.player1,
+            player2: myGlobal.player2,
+            players: myGlobal.players
+        });
+    };
+
     function getReady() {
-        var countDown = 4;
+        var countDown = 5;
 
         var countTimer = setInterval(function () {
             countDown--;
@@ -69,17 +87,49 @@ $(document).ready(function () {
     };
 
     function greetPlayer(x) {
-        $("#wait-div").empty();
+        $("#start-div").addClass("d-none");
+
+        $("#wait-div").empty().removeClass("d-none");
 
         var letsStartText = $("<h2>");
 
         letsStartText.text("Welcome to the game, Player " + x + "!")
 
-        setTimeout(getReady, 2000);
+        $("#wait-div").append(letsStartText);
+
+        setTimeout(getReady, 1000);
     };
 
     database.ref().on("value", function (snapshot) {
+        console.log(myGlobal);
 
+        myGlobal.players = snapshot.val().players;
+
+        myGlobal.player1 = snapshot.val().player1;
+
+        myGlobal.player2 = snapshot.val().player2;
+
+        console.log(snapshot.val());
+
+        console.log(myGlobal);
+    });
+
+    $(window).on("unload", function () {
+        if (myGlobal.assignedRole === "Player 1") {
+            myGlobal.players--;
+
+            myGlobal.player1 = false;
+
+            setToGlobal();
+        }
+
+        else if (myGlobal.assignedRole === "Player 2") {
+            myGlobal.players--;
+
+            myGlobal.player2 = false;
+
+            setToGlobal();
+        };
     });
 
     $("#start-button").on("click", function (event) {
@@ -90,10 +140,7 @@ $(document).ready(function () {
 
             myGlobal.players++;
 
-            database.ref().set({
-                player1: true,
-                players: myGlobal.players
-            });
+            setToGlobal();
 
             myGlobal.waitingForOpponent = true;
 
@@ -121,10 +168,7 @@ $(document).ready(function () {
 
             myGlobal.players++;
 
-            database.ref().set({
-                player2: true,
-                players: myGlobal.players
-            });
+            setToGlobal();
 
             greetPlayer("2");
         }
@@ -136,20 +180,13 @@ $(document).ready(function () {
 
             myGlobal.players++;
 
-            database.ref().set({
-                player1: true,
-                players: myGlobal.players
-            });
+            setToGlobal();
 
             greetPlayer("1");
         }
 
         else {
-            //var cantPlay = $("<div>");
-            //cantPlay.addClass("modal").attr("tabindex", "-1").attr("role", "dialog").attr("")
-            // do the modal thing
-
-            jQuery("#cant-play-modal").modal("show");
+            $("#cant-play-modal").modal("show");
         };
     });
 });
