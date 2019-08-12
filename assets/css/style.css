@@ -1,12 +1,8 @@
 body {
     font-family: "Palatino", sans-serif;
     font-weight: bold;
+    background: #fcfefc;
 }
-
-/*.game-section {
-    background: grey;
-    border-radius: 15%;
-}*/
 
 h2 {
     color: rgba(97, 32, 85);
@@ -25,4 +21,14 @@ h2 {
     background: rgba(97, 32, 85);
     border-color: white !important;
 
+}
+
+#start-button {
+    background: rgb(137, 145, 142);
+    border-color: rgba(97, 32, 85);
+    border-radius: 50%;
+    height: 293px;
+    width: 293px;
+    border-width: 7px;
+    font-size: 30px;
 }

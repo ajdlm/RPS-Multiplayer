@@ -7,12 +7,18 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-        <script src="assets/javascript/app.js"></script>
+        <script src="assets/javascript/game.js"></script>
 
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase-auth.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
 
         <meta name="viewport" content="width-device-width, initial-scale=1">
     </head>
@@ -21,21 +27,29 @@
         <h1 id="game-title" class="py-4 border-bottom text-center">Rock, Paper, Scissors Online</h1>
 
         <div class="container my-5">
-            <h2 class="text-center">Rock... Paper... Scissors... SHOOT!</h2>
+            <div id="game-div" class="d-none mt-5 pt-5">
+                <h2 class="text-center">Rock... Paper... Scissors... SHOOT!</h2>
 
-            <div class="row p-4 text-center game-section">
-                <div class="col-md-4">
-                    <img id="rock-button" class="game-button p-2" src="assets/images/rock.png" />
-                </div>
+                <div class="row p-4 text-center game-section">
+                    <div class="col-md-4">
+                        <img id="rock-button" class="game-button p-2" src="assets/images/rock.png" />
+                    </div>
 
-                <div class="col-md-4">
-                    <img id="paper-button" class="game-button p-2" src="assets/images/paper.png" />
-                </div>
+                    <div class="col-md-4">
+                        <img id="paper-button" class="game-button p-2" src="assets/images/paper.png" />
+                    </div>
 
-                <div class="col-md-4">
-                    <img id="scissors-button" class="game-button p-2" src="assets/images/scissors.png" />
+                    <div class="col-md-4">
+                        <img id="scissors-button" class="game-button p-2" src="assets/images/scissors.png" />
+                    </div>
                 </div>
             </div>
+
+            <div id="start-div" class="text-center mt-5 pt-5">
+                <button id="start-button" class="btn btn-info">JOIN GAME</button>
+            </div>
+
+            <div id="wait-div" class="text-center d-none mt-5 pt-5"></div>
         </div>
     </body>
 
