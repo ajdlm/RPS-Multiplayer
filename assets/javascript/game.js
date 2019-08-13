@@ -79,6 +79,10 @@ $(document).ready(function () {
             player2Choice: myGlobal.player2Choice,
             player1Chosen: myGlobal.player1Chosen,
             player2Chosen: myGlobal.player2Chosen,
+            player1Wins: myGlobal.player1Wins,
+            player2Wins: myGlobal.player2Wins,
+            player1Losses: myGlobal.player1Losses,
+            player2Losses: myGlobal.player2Losses,
             players: myGlobal.players
         });
     };
@@ -170,7 +174,7 @@ $(document).ready(function () {
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
-            losses.text("Losses: " + myGlobal.player2Wins);
+            losses.text("Losses: " + myGlobal.player1Losses);
         }
 
         else {
@@ -178,7 +182,7 @@ $(document).ready(function () {
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
-            losses.text("Losses: " + myGlobal.player1Wins);
+            losses.text("Losses: " + myGlobal.player2Losses);
         };
 
         $("#wait-div").append(loseText, "<br />", wins, "<br />", losses);
@@ -195,20 +199,35 @@ $(document).ready(function () {
 
         else if (((myGlobal.player1Choice === "Rock") && (myGlobal.player2Choice === "Scissors")) || ((myGlobal.player1Choice === "Paper") && (myGlobal.player2Choice === "Rock")) || ((myGlobal.player1Choice === "Scissors") && (myGlobal.player2Choice === "Paper"))) {
             if (myGlobal.assignedRole === "Player 1") {
+                myGlobal.player1Wins++;
+
+                database.ref().update({ player1Wins: myGlobal.player1Wins });
+
                 youWin();
             }
 
             else {
+                myGlobal.player1Losses++;
+
+                database.ref().update({ player1Losses: myGlobal.player1Losses });
+
                 youLose();
             };
         }
 
         else {
             if (myGlobal.assignedRole === "Player 2") {
+                myGlobal.player2Wins++;
+
+                database.ref().update({ player2Wins: myGlobal.player2Wins });
+
                 youWin();
             }
 
             else {
+                myGlobal.player2Losses++;
+
+                database.ref().update({ player2Losses: myGlobal.player2Losses });
 
                 youLose();
             };
@@ -252,6 +271,14 @@ $(document).ready(function () {
         myGlobal.player1Chosen = snapshot.val().player1Chosen;
 
         myGlobal.player2Chosen = snapshot.val().player2Chosen;
+
+        myGlobal.player1Wins = snapshot.val().player1Wins;
+
+        myGlobal.player2Wins = snapshot.val().player2Wins;
+
+        myGlobal.player1Losses = snapshot.val().player1Losses;
+
+        myGlobal.player2Losses = snapshot.val().player2Losses;
 
         if ((myGlobal.waitingForOpponent) && ((myGlobal.player1) && (myGlobal.player2))) {
             myGlobal.waitingForOpponent = false;
