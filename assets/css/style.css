@@ -35,3 +35,8 @@ h2 {
 #game-title, #cant-play-header, #cant-play-close {
     background: rgba(97, 32, 85);
 }
+
+#chat-div {
+    height: 300px;
+    overflow: scroll;
+}

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log("Up-to-date!");
+    console.log("Wowzers!");
 
     var config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
@@ -203,7 +203,7 @@ $(document).ready(function () {
             if (myGlobal.assignedRole === "Player 1") {
                 myGlobal.player1Wins++;
 
-                database.ref().update({ player1Wins: myGlobal.player1Wins });
+                //database.ref().update({ player1Wins: myGlobal.player1Wins });
 
                 youWin();
             }
@@ -211,7 +211,7 @@ $(document).ready(function () {
             else {
                 myGlobal.player1Losses++;
 
-                database.ref().update({ player1Losses: myGlobal.player1Losses });
+                //database.ref().update({ player1Losses: myGlobal.player1Losses });
 
                 youLose();
             };
@@ -221,7 +221,7 @@ $(document).ready(function () {
             if (myGlobal.assignedRole === "Player 2") {
                 myGlobal.player2Wins++;
 
-                database.ref().update({ player2Wins: myGlobal.player2Wins });
+                //database.ref().update({ player2Wins: myGlobal.player2Wins });
 
                 youWin();
             }
@@ -229,7 +229,7 @@ $(document).ready(function () {
             else {
                 myGlobal.player2Losses++;
 
-                database.ref().update({ player2Losses: myGlobal.player2Losses });
+                //database.ref().update({ player2Losses: myGlobal.player2Losses });
 
                 youLose();
             };
