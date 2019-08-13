@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log("Wowzers!");
+    console.log("Weeweewee!");
 
     var config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
@@ -69,7 +69,7 @@ $(document).ready(function () {
             setToGlobal();
 
             myGlobal.rpsShot = false;
-            
+
             countDownText.text("Shoot!")
         };
 
