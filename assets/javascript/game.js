@@ -132,7 +132,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            winText.text(myGlobal.Player1Choice + " beats " + myGlobal.Player2Choice + "! You win!")
+            winText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice + "! You win!")
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
         }
 
         else {
-            winText.text(myGlobal.Player2Choice + " beats " + myGlobal.Player1Choice + "! You win!")
+            winText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice + "! You win!")
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            loseText.text(myGlobal.Player2Choice + " beats " + myGlobal.Player1Choice + ". You lose.");
+            loseText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice + ". You lose.");
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -170,7 +170,7 @@ $(document).ready(function () {
         }
 
         else {
-            loseText.text(myGlobal.Player1Choice + " beats " + myGlobal.Player2Choice + ". You lose.");
+            loseText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice + ". You lose.");
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
