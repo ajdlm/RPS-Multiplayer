@@ -132,7 +132,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            winText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice + "! You win!")
+            winText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + "! You win!")
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
         }
 
         else {
-            winText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice + "! You win!")
+            winText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + "! You win!")
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
@@ -162,7 +162,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            loseText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice + ". You lose.");
+            loseText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + ". You lose.");
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -170,7 +170,7 @@ $(document).ready(function () {
         }
 
         else {
-            loseText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice + ". You lose.");
+            loseText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + ". You lose.");
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
@@ -195,7 +195,7 @@ $(document).ready(function () {
             itsATie();
         }
 
-        else if (((myGlobal.player1Choice === "rock") && (myGlobal.player2Choice === "scissors")) || ((myGlobal.player1Choice === "paper") && (myGlobal.player2Choice === "rock")) || ((myGlobal.player1Choice === "scissors") && (myGlobal.player2Choice === "paper"))) {
+        else if (((myGlobal.player1Choice === "Rock") && (myGlobal.player2Choice === "Scissors")) || ((myGlobal.player1Choice === "Paper") && (myGlobal.player2Choice === "Rock")) || ((myGlobal.player1Choice === "Scissors") && (myGlobal.player2Choice === "Paper"))) {
             if (myGlobal.assignedRole === "Player 1") {
                 youWin();
             }
@@ -347,14 +347,14 @@ $(document).ready(function () {
 
     $("#rock-button").on("click", function () {
         if (myGlobal.assignedRole === "Player 1") {
-            myGlobal.player1Choice = "rock";
+            myGlobal.player1Choice = "Rock";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
 
         else if (myGlobal.assignedRole === "Player 2") {
-            myGlobal.player2Choice = "rock";
+            myGlobal.player2Choice = "Rock";
             myGlobal.player2Chosen = true;
             setToGlobal();
             choiceMade();
@@ -363,14 +363,14 @@ $(document).ready(function () {
 
     $("#paper-button").on("click", function () {
         if (myGlobal.assignedRole === "Player 1") {
-            myGlobal.player1Choice = "paper";
+            myGlobal.player1Choice = "Paper";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
 
         else if (myGlobal.assignedRole === "Player 2") {
-            myGlobal.player2Choice = "paper";
+            myGlobal.player2Choice = "Paper";
             myGlobal.player2Chosen = true;
             setToGlobal();
             choiceMade();
@@ -379,14 +379,14 @@ $(document).ready(function () {
 
     $("#scissors-button").on("click", function () {
         if (myGlobal.assignedRole === "Player 1") {
-            myGlobal.player1Choice = "scissors";
+            myGlobal.player1Choice = "Scissors";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
 
         else if (myGlobal.assignedRole === "Player 2") {
-            myGlobal.player2Choice = "scissors";
+            myGlobal.player2Choice = "Scissors";
             myGlobal.player2Chosen = true;
             setToGlobal();
             choiceMade();
