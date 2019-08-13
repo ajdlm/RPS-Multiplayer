@@ -28,7 +28,8 @@ $(document).ready(function () {
         player1Losses: 0,
         player2Losses: 0,
         assignedRole: "not a player",
-        waitingForOpponent: false
+        waitingForOpponent: false,
+        rpsShot: false
     }
 
     function startGame() {
@@ -67,6 +68,8 @@ $(document).ready(function () {
 
             setToGlobal();
 
+            myGlobal.rpsShot = false;
+            
             countDownText.text("Shoot!")
         };
 
@@ -193,45 +196,49 @@ $(document).ready(function () {
     };
 
     function rpsShoot() {
-        $("#game-div").addClass("d-none");
+        if (!myGlobal.rpsShot) {
+            myGlobal.rpsShot = true;
 
-        if (myGlobal.player1Choice === myGlobal.player2Choice) {
-            itsATie();
-        }
+            $("#game-div").addClass("d-none");
 
-        else if (((myGlobal.player1Choice === "Rock") && (myGlobal.player2Choice === "Scissors")) || ((myGlobal.player1Choice === "Paper") && (myGlobal.player2Choice === "Rock")) || ((myGlobal.player1Choice === "Scissors") && (myGlobal.player2Choice === "Paper"))) {
-            if (myGlobal.assignedRole === "Player 1") {
-                myGlobal.player1Wins++;
+            if (myGlobal.player1Choice === myGlobal.player2Choice) {
+                itsATie();
+            }
 
-                //database.ref().update({ player1Wins: myGlobal.player1Wins });
+            else if (((myGlobal.player1Choice === "Rock") && (myGlobal.player2Choice === "Scissors")) || ((myGlobal.player1Choice === "Paper") && (myGlobal.player2Choice === "Rock")) || ((myGlobal.player1Choice === "Scissors") && (myGlobal.player2Choice === "Paper"))) {
+                if (myGlobal.assignedRole === "Player 1") {
+                    myGlobal.player1Wins++;
 
-                youWin();
+                    database.ref().update({ player1Wins: myGlobal.player1Wins });
+
+                    youWin();
+                }
+
+                else {
+                    myGlobal.player1Losses++;
+
+                    database.ref().update({ player1Losses: myGlobal.player1Losses });
+
+                    youLose();
+                };
             }
 
             else {
-                myGlobal.player1Losses++;
+                if (myGlobal.assignedRole === "Player 2") {
+                    myGlobal.player2Wins++;
 
-                //database.ref().update({ player1Losses: myGlobal.player1Losses });
+                    database.ref().update({ player2Wins: myGlobal.player2Wins });
 
-                youLose();
-            };
-        }
+                    youWin();
+                }
 
-        else {
-            if (myGlobal.assignedRole === "Player 2") {
-                myGlobal.player2Wins++;
+                else {
+                    myGlobal.player2Losses++;
 
-                //database.ref().update({ player2Wins: myGlobal.player2Wins });
+                    database.ref().update({ player2Losses: myGlobal.player2Losses });
 
-                youWin();
-            }
-
-            else {
-                myGlobal.player2Losses++;
-
-                //database.ref().update({ player2Losses: myGlobal.player2Losses });
-
-                youLose();
+                    youLose();
+                };
             };
         };
     };
