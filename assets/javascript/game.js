@@ -21,6 +21,16 @@ $(document).ready(function () {
         player2Choice: "",
         player1Chosen: false,
         player2Chosen: false,
+        /* Have opted to store data on the number of wins and losses
+        only on the currently loaded page, both because this allows me
+        to more easily update and display said variables accurately if
+        the users' pages are out of sync with each other, and because
+        I want a user's own win/loss record to persist over multiple
+        games even against different opponents, while, should they leave
+        the page, I'd want to wipe the slate clean for the next user to
+        take their place as Player 1 or Player 2 anyway */
+        yourWins: 0,
+        yourLosses: 0,
         assignedRole: "not a player",
         waitingForOpponent: false
     }
@@ -112,13 +122,73 @@ $(document).ready(function () {
         setTimeout(getReady, 1000);
     }
 
+    function youWin() {
+        $("#wait-div").empty();
+
+        var winText = $("<h2>");
+
+        var wins = $("<h2>");
+
+        var losses = $("<h2>");
+
+        if (myGlobal.assignedRole === "Player 1") {
+            winText.text(myGlobal.Player1Choice + " beats " + myGlobal.Player2Choice + "! You win!")
+
+            wins.text("Wins: " + myGlobal.player1Wins);
+
+            losses.text("Losses: " + myGlobal.player1Losses);
+        }
+
+        else {
+            winText.text(myGlobal.Player2Choice + " beats " + myGlobal.Player1Choice + "! You win!")
+
+            wins.text("Wins: " + myGlobal.player2Wins);
+
+            losses.text("Losses: " + myGlobal.player2Losses);
+        };
+
+        $("#wait-div").append(winText, "<br />", wins, "<br />", losses);
+
+        setTimeout(getReady, 2000);
+    };
+
+    function youLose() {
+        $("#wait-div").empty();
+
+        var loseText = $("<h2>");
+
+        var wins = $("<h2>");
+
+        var losses = $("<h2>");
+
+        if (myGlobal.assignedRole === "Player 1") {
+            loseText.text(myGlobal.Player2Choice + " beats " + myGlobal.Player1Choice + ". You lose.");
+
+            wins.text("Wins: " + myGlobal.player1Wins);
+
+            losses.text("Losses: " + myGlobal.player2Wins);
+        }
+
+        else {
+            loseText.text(myGlobal.Player1Choice + " beats " + myGlobal.Player2Choice + ". You lose.");
+
+            wins.text("Wins: " + myGlobal.player2Wins);
+
+            losses.text("Losses: " + myGlobal.player1Wins);
+        };
+
+        $("#wait-div").append(loseText, "<br />", wins, "<br />", losses);
+
+        setTimeout(getReady, 2000);
+    };
+
     function rpsShoot() {
-        if (player1Choice === player2Choice) {
+        if (myGlobal.player1Choice === myGlobal.player2Choice) {
             itsATie();
         }
 
-        else if ((player1Choice === "rock" && player2Choice === "scissors") || (player1Choice === "paper" && player2Choice === "rock") || (player1Choice === "scissors" && player2Choice === "paper")) {
-            if (assignedRole = "Player 1") {
+        else if ((myGlobal.player1Choice === "rock" && myGlobal.player2Choice === "scissors") || (myGlobal.player1Choice === "paper" && myGlobal.player2Choice === "rock") || (myGlobal.player1Choice === "scissors" && myGlobal.player2Choice === "paper")) {
+            if (myGlobal.assignedRole = "Player 1") {
                 youWin();
             }
 
@@ -128,18 +198,19 @@ $(document).ready(function () {
         }
 
         else {
-            if (assignedRole = "Player 2") {
+            if (myGlobal.assignedRole = "Player 2") {
                 youWin();
             }
 
             else {
+
                 youLose();
             };
         };
     };
 
     function choiceMade() {
-        if ((player1Chosen) && (player2Chosen)) {
+        if ((myGlobal.player1Chosen) && (myGlobal.player2Chosen)) {
             rpsShoot();
         }
 
@@ -259,14 +330,14 @@ $(document).ready(function () {
     });
 
     $("#rock-button").on("click", function () {
-        if (assignedRole === "Player 1") {
+        if (myGlobal.assignedRole === "Player 1") {
             myGlobal.player1Choice = "rock";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
-        
-        else if (assignedRole === "Player 2") {
+
+        else if (myGlobal.assignedRole === "Player 2") {
             myGlobal.player2Choice = "rock";
             myGlobal.player2Chosen = true;
             setToGlobal();
@@ -275,14 +346,14 @@ $(document).ready(function () {
     });
 
     $("#paper-button").on("click", function () {
-        if (assignedRole === "Player 1") {
+        if (myGlobal.assignedRole === "Player 1") {
             myGlobal.player1Choice = "paper";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
-        
-        else if (assignedRole === "Player 2") {
+
+        else if (myGlobal.assignedRole === "Player 2") {
             myGlobal.player2Choice = "paper";
             myGlobal.player2Chosen = true;
             setToGlobal();
@@ -291,14 +362,14 @@ $(document).ready(function () {
     });
 
     $("#rock-button").on("click", function () {
-        if (assignedRole === "Player 1") {
+        if (myGlobal.assignedRole === "Player 1") {
             myGlobal.player1Choice = "scissors";
             myGlobal.player1Chosen = true;
             setToGlobal();
             choiceMade();
         }
-        
-        else if (assignedRole === "Player 2") {
+
+        else if (myGlobal.assignedRole === "Player 2") {
             myGlobal.player2Choice = "scissors";
             myGlobal.player2Chosen = true;
             setToGlobal();
