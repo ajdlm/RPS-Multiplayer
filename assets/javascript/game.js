@@ -61,6 +61,12 @@ $(document).ready(function () {
         }
 
         else {
+            myGlobal.player1Chosen = false;
+
+            myGlobal.player2Chosen = false;
+
+            setToGlobal();
+
             countDownText.text("Shoot!")
         };
 
@@ -185,12 +191,6 @@ $(document).ready(function () {
     function rpsShoot() {
         $("#game-div").addClass("d-none");
 
-        myGlobal.player1Chosen = false;
-
-        myGlobal.player2Chosen = false;
-
-        setToGlobal();
-
         if (myGlobal.player1Choice === myGlobal.player2Choice) {
             itsATie();
         }
@@ -219,13 +219,22 @@ $(document).ready(function () {
 
     function choiceMade() {
         if ((myGlobal.player1Chosen) && (myGlobal.player2Chosen)) {
+            console.log("lalala");
             rpsShoot();
         }
 
         else {
             $("#game-div").addClass("d-none");
 
-            $("#wait-div")
+            var waitText = $("<h2>");
+
+            waitText.text("Waiting on opponent's choice...")
+
+            var waitGif = $("<img>");
+
+            waitGif.attr("src", "assets/images/loader.gif");
+
+            $("#wait-div").append(waitGif, waitText);
         };
     };
 
