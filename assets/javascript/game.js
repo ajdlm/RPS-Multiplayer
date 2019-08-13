@@ -244,7 +244,7 @@ $(document).ready(function () {
             getReady();
         };
 
-        if ((player1Chosen) && (player2Chosen)) {
+        if ((myGlobal.player1Chosen) && (myGlobal.player2Chosen)) {
             rpsShoot();
         };
 
