@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    console.log("Up-to-date!");
+
     var config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
         authDomain: "rock-paper-scisso.firebaseapp.com",
