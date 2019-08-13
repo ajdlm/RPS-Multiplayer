@@ -21,16 +21,10 @@ $(document).ready(function () {
         player2Choice: "",
         player1Chosen: false,
         player2Chosen: false,
-        /* Have opted to store data on the number of wins and losses
-        only on the currently loaded page, both because this allows me
-        to more easily update and display said variables accurately if
-        the users' pages are out of sync with each other, and because
-        I want a user's own win/loss record to persist over multiple
-        games even against different opponents, while, should they leave
-        the page, I'd want to wipe the slate clean for the next user to
-        take their place as Player 1 or Player 2 anyway */
-        yourWins: 0,
-        yourLosses: 0,
+        player1Wins: 0,
+        player2Wins: 0,
+        player1Losses: 0,
+        player2Losses: 0,
         assignedRole: "not a player",
         waitingForOpponent: false
     }
@@ -61,9 +55,13 @@ $(document).ready(function () {
         }
 
         else {
-            myGlobal.player1Chosen = false;
+            if (myGlobal.assignedRole === "Player 1") {
+                myGlobal.player1Chosen = false;
+            }
 
-            myGlobal.player2Chosen = false;
+            else {
+                myGlobal.player2Chosen = false;
+            };
 
             setToGlobal();
 
