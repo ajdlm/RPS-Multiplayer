@@ -183,6 +183,14 @@ $(document).ready(function () {
     };
 
     function rpsShoot() {
+        $("#game-div").addClass("d-none");
+
+        myGlobal.player1Chosen = false;
+
+        myGlobal.player2Chosen = false;
+
+        setToGlobal();
+
         if (myGlobal.player1Choice === myGlobal.player2Choice) {
             itsATie();
         }
@@ -258,6 +266,14 @@ $(document).ready(function () {
             myGlobal.players--;
 
             myGlobal.player1 = false;
+
+            myGlobal.player1Choice = "";
+
+            myGlobal.player1Chosen = false;
+
+/*            myGlobal.player1Wins = 0;
+
+            myGlobal.player1*/
 
             setToGlobal();
         }
