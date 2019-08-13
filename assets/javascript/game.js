@@ -283,6 +283,10 @@ $(document).ready(function () {
 
             myGlobal.player2 = false;
 
+            myGlobal.player2Choice = "";
+
+            myGlobal.player2Chosen = false;
+
             setToGlobal();
         };
     });
