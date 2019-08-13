@@ -28,6 +28,8 @@ $(document).ready(function () {
     function startGame() {
         $("#start-div").addClass("d-none");
 
+        $("#wait-div").empty();
+
         $("#game-div").removeClass("d-none");
     };
 
@@ -87,7 +89,7 @@ $(document).ready(function () {
     function greetPlayer(x) {
         $("#start-div").addClass("d-none");
 
-        $("#wait-div").empty().removeClass("d-none");
+        $("#wait-div").empty();
 
         var letsStartText = $("<h2>");
 
@@ -98,17 +100,53 @@ $(document).ready(function () {
         setTimeout(getReady, 1000);
     };
 
+    function itsATie() {
+        $("#wait-div").empty();
+
+        var tieText = $("<h2>");
+
+        tieText.text("It's a tie!")
+
+        $("#wait-div").append(tieText);
+
+        setTimeout(getReady, 1000);
+    }
+
     function rpsShoot() {
         if (player1Choice === player2Choice) {
-            //tie
+            itsATie();
         }
 
         else if ((player1Choice === "rock" && player2Choice === "scissors") || (player1Choice === "paper" && player2Choice === "rock") || (player1Choice === "scissors" && player2Choice === "paper")) {
-            //player 1 wins
+            if (assignedRole = "Player 1") {
+                youWin();
+            }
+
+            else {
+                youLose();
+            };
         }
 
         else {
-            //player 2 wins
+            if (assignedRole = "Player 2") {
+                youWin();
+            }
+
+            else {
+                youLose();
+            };
+        };
+    };
+
+    function choiceMade() {
+        if ((player1Chosen) && (player2Chosen)) {
+            rpsShoot();
+        }
+
+        else {
+            $("#game-div").addClass("d-none");
+
+            $("#wait-div")
         };
     };
 
@@ -188,7 +226,7 @@ $(document).ready(function () {
 
             loaderGif.attr("src", "assets/images/loader.gif");
 
-            $("#wait-div").removeClass("d-none").append(greetingText, loaderGif, waitText);
+            $("#wait-div").append(greetingText, loaderGif, waitText);
         }
 
         else if (myGlobal.players === 1 && !myGlobal.player2) {
@@ -225,12 +263,14 @@ $(document).ready(function () {
             myGlobal.player1Choice = "rock";
             myGlobal.player1Chosen = true;
             setToGlobal();
+            choiceMade();
         }
         
         else if (assignedRole === "Player 2") {
             myGlobal.player2Choice = "rock";
             myGlobal.player2Chosen = true;
             setToGlobal();
+            choiceMade();
         };
     });
 
@@ -239,12 +279,14 @@ $(document).ready(function () {
             myGlobal.player1Choice = "paper";
             myGlobal.player1Chosen = true;
             setToGlobal();
+            choiceMade();
         }
         
         else if (assignedRole === "Player 2") {
             myGlobal.player2Choice = "paper";
             myGlobal.player2Chosen = true;
             setToGlobal();
+            choiceMade();
         };
     });
 
@@ -253,12 +295,14 @@ $(document).ready(function () {
             myGlobal.player1Choice = "scissors";
             myGlobal.player1Chosen = true;
             setToGlobal();
+            choiceMade();
         }
         
         else if (assignedRole === "Player 2") {
             myGlobal.player2Choice = "scissors";
             myGlobal.player2Chosen = true;
             setToGlobal();
+            choiceMade();
         };
     });
 });
