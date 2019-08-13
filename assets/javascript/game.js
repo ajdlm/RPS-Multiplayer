@@ -196,7 +196,7 @@ $(document).ready(function () {
         }
 
         else if (((myGlobal.player1Choice === "rock") && (myGlobal.player2Choice === "scissors")) || ((myGlobal.player1Choice === "paper") && (myGlobal.player2Choice === "rock")) || ((myGlobal.player1Choice === "scissors") && (myGlobal.player2Choice === "paper"))) {
-            if (myGlobal.assignedRole = "Player 1") {
+            if (myGlobal.assignedRole === "Player 1") {
                 youWin();
             }
 
@@ -206,7 +206,7 @@ $(document).ready(function () {
         }
 
         else {
-            if (myGlobal.assignedRole = "Player 2") {
+            if (myGlobal.assignedRole === "Player 2") {
                 youWin();
             }
 
@@ -288,7 +288,7 @@ $(document).ready(function () {
     });
 
     $("#start-button").on("click", function (event) {
-        if (myGlobal.players === 0 && !myGlobal.player1) {
+        if ((myGlobal.players === 0) && (!myGlobal.player1)) {
             myGlobal.assignedRole = "Player 1";
 
             myGlobal.player1 = true;
@@ -316,7 +316,7 @@ $(document).ready(function () {
             $("#wait-div").append(greetingText, loaderGif, waitText);
         }
 
-        else if (myGlobal.players === 1 && !myGlobal.player2) {
+        else if ((myGlobal.players === 1) && (!myGlobal.player2)) {
             myGlobal.assignedRole = "Player 2";
 
             myGlobal.player2 = true;
@@ -328,7 +328,7 @@ $(document).ready(function () {
             greetPlayer("2");
         }
 
-        else if (myGlobal.players === 1 && !myGlobal.player1) {
+        else if ((myGlobal.players) === 1 && (!myGlobal.player1)) {
             myGlobal.assignedRole = "Player 1";
 
             myGlobal.player1 = true;
