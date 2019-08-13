@@ -377,7 +377,7 @@ $(document).ready(function () {
         };
     });
 
-    $("#rock-button").on("click", function () {
+    $("#scissors-button").on("click", function () {
         if (myGlobal.assignedRole === "Player 1") {
             myGlobal.player1Choice = "scissors";
             myGlobal.player1Chosen = true;
