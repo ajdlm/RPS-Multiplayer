@@ -195,7 +195,7 @@ $(document).ready(function () {
             itsATie();
         }
 
-        else if ((myGlobal.player1Choice === "rock" && myGlobal.player2Choice === "scissors") || (myGlobal.player1Choice === "paper" && myGlobal.player2Choice === "rock") || (myGlobal.player1Choice === "scissors" && myGlobal.player2Choice === "paper")) {
+        else if (((myGlobal.player1Choice === "rock") && (myGlobal.player2Choice === "scissors")) || ((myGlobal.player1Choice === "paper") && (myGlobal.player2Choice === "rock")) || ((myGlobal.player1Choice === "scissors") && (myGlobal.player2Choice === "paper"))) {
             if (myGlobal.assignedRole = "Player 1") {
                 youWin();
             }
@@ -270,10 +270,6 @@ $(document).ready(function () {
             myGlobal.player1Choice = "";
 
             myGlobal.player1Chosen = false;
-
-/*            myGlobal.player1Wins = 0;
-
-            myGlobal.player1*/
 
             setToGlobal();
         }
