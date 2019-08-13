@@ -305,6 +305,10 @@ $(document).ready(function () {
 
             myGlobal.player1Chosen = false;
 
+            myGlobal.player1Wins = 0;
+
+            myGlobal.player1Losses = 0;
+
             setToGlobal();
         }
 
@@ -316,6 +320,10 @@ $(document).ready(function () {
             myGlobal.player2Choice = "";
 
             myGlobal.player2Chosen = false;
+
+            myGlobal.player2Wins = 0;
+
+            myGlobal.player2Losses = 0;
 
             setToGlobal();
         };
