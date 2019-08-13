@@ -1,15 +1,5 @@
 $(document).ready(function () {
-    /*var config = {
-        apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
-        authDomain: "rock-paper-scisso.firebaseapp.com",
-        databaseURL: "https://rock-paper-scisso.firebaseio.com",
-        projectId: "rock-paper-scisso",
-        storageBucket: "rock-paper-scisso.appspot.com",
-        messagingSenderId: "1023291345456",
-        appId: "1:1023291345456:web:1b970f64f4f44529"
-    };*/
-
-    const config = {
+    var config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
         authDomain: "rock-paper-scisso.firebaseapp.com",
         databaseURL: "https://rock-paper-scisso.firebaseio.com",
@@ -27,6 +17,10 @@ $(document).ready(function () {
         players: 2,
         player1: true,
         player2: false,
+        player1Choice: "",
+        player2Choice: "",
+        player1Chosen: false,
+        player2Chosen: false,
         assignedRole: "not a player",
         waitingForOpponent: false
     }
@@ -65,6 +59,10 @@ $(document).ready(function () {
         database.ref().update({
             player1: myGlobal.player1,
             player2: myGlobal.player2,
+            player1Choice: myGlobal.player1Choice,
+            player2Choice: myGlobal.player2Choice,
+            player1Chosen: myGlobal.player1Chosen,
+            player2Chosen: myGlobal.player2Chosen,
             players: myGlobal.players
         });
     };
@@ -100,6 +98,20 @@ $(document).ready(function () {
         setTimeout(getReady, 1000);
     };
 
+    function rpsShoot() {
+        if (player1Choice === player2Choice) {
+            //tie
+        }
+
+        else if ((player1Choice === "rock" && player2Choice === "scissors") || (player1Choice === "paper" && player2Choice === "rock") || (player1Choice === "scissors" && player2Choice === "paper")) {
+            //player 1 wins
+        }
+
+        else {
+            //player 2 wins
+        };
+    };
+
     database.ref().on("value", function (snapshot) {
         console.log(myGlobal);
 
@@ -108,6 +120,24 @@ $(document).ready(function () {
         myGlobal.player1 = snapshot.val().player1;
 
         myGlobal.player2 = snapshot.val().player2;
+
+        myGlobal.player1Choice = snapshot.val().player1Choice;
+
+        myGlobal.player2Choice = snapshot.val().player2Choice;
+
+        myGlobal.player1Chosen = snapshot.val().player1Chosen;
+
+        myGlobal.player2Chosen = snapshot.val().player2Chosen;
+
+        if ((myGlobal.waitingForOpponent) && ((myGlobal.player1) && (myGlobal.player2))) {
+            myGlobal.waitingForOpponent = false;
+
+            getReady();
+        };
+
+        if ((player1Chosen) && (player2Chosen)) {
+            rpsShoot();
+        };
 
         console.log(snapshot.val());
 
@@ -187,6 +217,48 @@ $(document).ready(function () {
 
         else {
             $("#cant-play-modal").modal("show");
+        };
+    });
+
+    $("#rock-button").on("click", function () {
+        if (assignedRole === "Player 1") {
+            myGlobal.player1Choice = "rock";
+            myGlobal.player1Chosen = true;
+            setToGlobal();
+        }
+        
+        else if (assignedRole === "Player 2") {
+            myGlobal.player2Choice = "rock";
+            myGlobal.player2Chosen = true;
+            setToGlobal();
+        };
+    });
+
+    $("#paper-button").on("click", function () {
+        if (assignedRole === "Player 1") {
+            myGlobal.player1Choice = "paper";
+            myGlobal.player1Chosen = true;
+            setToGlobal();
+        }
+        
+        else if (assignedRole === "Player 2") {
+            myGlobal.player2Choice = "paper";
+            myGlobal.player2Chosen = true;
+            setToGlobal();
+        };
+    });
+
+    $("#rock-button").on("click", function () {
+        if (assignedRole === "Player 1") {
+            myGlobal.player1Choice = "scissors";
+            myGlobal.player1Chosen = true;
+            setToGlobal();
+        }
+        
+        else if (assignedRole === "Player 2") {
+            myGlobal.player2Choice = "scissors";
+            myGlobal.player2Chosen = true;
+            setToGlobal();
         };
     });
 });
