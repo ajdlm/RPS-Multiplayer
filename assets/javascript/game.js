@@ -14,8 +14,8 @@ $(document).ready(function () {
     var database = firebase.database();
 
     var myGlobal = {
-        players: 2,
-        player1: true,
+        players: 0,
+        player1: false,
         player2: false,
         player1Choice: "",
         player2Choice: "",
