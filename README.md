@@ -42,6 +42,4 @@ An online multiplayer version of the game Rock, Paper, Scissors.
 
 ## Bugs
 
-* There is code written in [game.js](assets/javascript/game.js) meant to reset the values of the variables in Firebase associated with a given player when their page unloads (when being refreshed, exited out of, etc.).
-
-For the most part, this works, but it may still be possible for their variables' values to persist if there's something odd/unexpected about how they leave the page. Should this happen again, they will need to be edited manually or the game will not work properly.
+* There is code written in [game.js](assets/javascript/game.js) meant to reset the values of the variables in Firebase associated with a given player when their page unloads (when being refreshed, exited out of, etc.). For the most part, this works, but it may still be possible for their variables' values to persist if there's something odd/unexpected about how they leave the page. Should this happen again, they will need to be edited manually or the game will not work properly.
