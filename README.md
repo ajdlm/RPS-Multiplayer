@@ -20,17 +20,17 @@ An online multiplayer version of the game Rock, Paper, Scissors.
 
 ## How to Play
 
-* First, a series of <h2> elements will display, each replacing the last after a second elapses. Taken together, they will read, "Rock... Paper... Scissors... Shoot!"
+* First, a series of h2 elements will display, each replacing the last after a second elapses. Taken together, they will read, "Rock... Paper... Scissors... Shoot!"
 
 * Then, three images will display -- one of a rock, one of a paper, and one of some scissors. To choose either rock, paper, or scissors, the user must click on the corresponding image.
 
 * The first user to choose will be shown the same loader gif as previously and informed that the page is waiting on their opponent's choice.
 
-* Once both users have chosen, the page will stop displaying the images and instead show <h2> text informing them of whether they've won, lost, or tied.
+* Once both users have chosen, the page will stop displaying the images and instead show h2 text informing them of whether they've won, lost, or tied.
 
 * If they've won or lost, the page will also display the cumulative numbers of wins and losses that they've had so far.
 
-* After that, the process will begin again, starting with the display of the <h2> elements reading "Rock... Paper... Scissors... Shoot!"
+* After that, the process will begin again, starting with the display of the h2 elements reading "Rock... Paper... Scissors... Shoot!"
 
 * If either of the users leaves the page at any point, the other one will have to wait for a new opponent to continue.
 
