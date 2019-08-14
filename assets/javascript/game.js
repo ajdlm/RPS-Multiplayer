@@ -51,13 +51,7 @@ $(document).ready(function () {
 
         else if (x === 3) {
             countDownText.text("Paper...")
-        }
 
-        else if (x === 2) {
-            countDownText.text("Scissors...")
-        }
-
-        else {
             if (myGlobal.assignedRole === "Player 1") {
                 myGlobal.player1Chosen = false;
             }
@@ -69,7 +63,13 @@ $(document).ready(function () {
             setToGlobal();
 
             myGlobal.rpsShot = false;
+        }
 
+        else if (x === 2) {
+            countDownText.text("Scissors...")
+        }
+
+        else {
             countDownText.text("Shoot!")
         };
 
@@ -215,9 +215,9 @@ $(document).ready(function () {
                 }
 
                 else {
-                    myGlobal.player1Losses++;
+                    myGlobal.player2Losses++;
 
-                    database.ref().update({ player1Losses: myGlobal.player1Losses });
+                    database.ref().update({ player2Losses: myGlobal.player2Losses });
 
                     youLose();
                 };
@@ -233,9 +233,9 @@ $(document).ready(function () {
                 }
 
                 else {
-                    myGlobal.player2Losses++;
+                    myGlobal.player1Losses++;
 
-                    database.ref().update({ player2Losses: myGlobal.player2Losses });
+                    database.ref().update({ player1Losses: myGlobal.player1Losses });
 
                     youLose();
                 };
@@ -443,4 +443,16 @@ $(document).ready(function () {
             choiceMade();
         };
     });
+
+    /*database.ref().on("child_added", function(childSnapshot) {
+        //stuff
+    });
+
+    $("#submit-message").on("click", function (event) {
+        event.preventDefault();
+
+        var newMessage = $("#add-message").val().trim();
+
+        database.ref().push(newMessage);
+    });*/
 });
