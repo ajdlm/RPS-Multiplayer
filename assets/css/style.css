@@ -1,4 +1,8 @@
-body {
+html, body {
+    height: 100%;
+}
+
+body, #chat-heading, #submit-message {
     font-family: "Palatino", sans-serif;
     font-weight: bold;
     background: #fcfefc;
@@ -9,6 +13,11 @@ h2 {
     font-weight: bolder;
 }
 
+#not-chat {
+    min-height: 100%;
+    margin-bottom: -300px;
+}
+
 .game-button {
     max-height: 300px;
     cursor: pointer;
@@ -16,10 +25,7 @@ h2 {
 }
 
 #game-title {
-    border-width: .35rem !important;
-    color: white;
-    border-color: white !important;
-
+    color: #fcfefc;
 }
 
 #start-button {
@@ -32,11 +38,32 @@ h2 {
     font-size: 30px;
 }
 
-#game-title, #cant-play-header, #cant-play-close {
+#game-title, #cant-play-header, #cant-play-close, #chat-heading, #message-sender {
     background: rgba(97, 32, 85);
 }
 
-#chat-div {
+.push {
     height: 300px;
+}
+
+#chat-div {
+    height: 350px;
+}
+
+#chat-heading {
+    color: #fcfefc;
+    height: 20%;
+}
+
+#chat-area {
     overflow: scroll;
+    height: 67.5%;
+}
+
+#message-sender {
+    height: 12.5%;
+}
+
+#add-message {
+    width: 85%;
 }

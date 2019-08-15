@@ -28,63 +28,72 @@
     </head>
 
     <body>
-        <h1 id="game-title" class="py-4 border-bottom text-center">Rock, Paper, Scissors Online</h1>
+        <div id="not-chat">
+            <h1 id="game-title" class="py-4 mb-0 text-center">Rock, Paper, Scissors Online</h1>
 
-        <div class="modal" id="cant-play-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div id="cant-play-header" class="modal-header">
-                        <h2 class="modal-title text-white">Game Full</h2>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+            <div class="modal" id="cant-play-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div id="cant-play-header" class="modal-header">
+                            <h2 class="modal-title text-white">Game Full</h2>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                    <div class="modal-body">
-                        <p>Sorry, but there are already two players in the game. Try joining again later.</p>
-                    </div>
+                        <div class="modal-body">
+                            <p>Sorry, but there are already two players in the game. Try joining again later.</p>
+                        </div>
 
-                    <div class="modal-footer">
-                        <button type="button" id="cant-play-close" class="btn text-white" data-dismiss="modal">Okay</button>
+                        <div class="modal-footer">
+                            <button type="button" id="cant-play-close" class="btn text-white"
+                                data-dismiss="modal">Okay</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="container">
+                <div id="game-div" class="d-none my-4 py-4">
+                    <h2 class="text-center">Click on either the rock, the paper or the scissors to proceed.</h2>
+
+                    <div class="row p-4 text-center game-section">
+                        <div class="col-md-4">
+                            <img id="rock-button" class="game-button p-2" src="assets/images/rock.png" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <img id="paper-button" class="game-button p-2" src="assets/images/paper.png" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <img id="scissors-button" class="game-button p-2" src="assets/images/scissors.png" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="start-div" class="text-center mt-5 pt-5">
+                    <button id="start-button" class="btn btn-info mt-5">JOIN GAME</button>
+                </div>
+
+                <div id="wait-div" class="text-center my-4 py-4 d-none"></div>
+            </div>
+
+            <div class="push d-none"></div>
         </div>
 
-        <div class="container my-5">
-            <div id="game-div" class="d-none mt-5 pt-5">
-                <h2 class="text-center">Click on either the rock, the paper or the scissors to proceed.</h2>
-
-                <div class="row p-4 text-center game-section">
-                    <div class="col-md-4">
-                        <img id="rock-button" class="game-button p-2" src="assets/images/rock.png" />
-                    </div>
-
-                    <div class="col-md-4">
-                        <img id="paper-button" class="game-button p-2" src="assets/images/paper.png" />
-                    </div>
-
-                    <div class="col-md-4">
-                        <img id="scissors-button" class="game-button p-2" src="assets/images/scissors.png" />
-                    </div>
-                </div>
-            </div>
-
-            <div id="start-div" class="text-center mt-5 pt-5">
-                <button id="start-button" class="btn btn-info">JOIN GAME</button>
-            </div>
-
-            <div id="wait-div" class="text-center mt-5 pt-5"></div>
-
-            <!--<div id="chat-div" class="border border-dark text-center">
-                <h2 id="chat-heading">Chat</h2>
+        <div class="container">
+            <div id="chat-div" class="border border-bottom-0 border-dark d-none">
+                <h2 id="chat-heading" class="text-center py-3 mb-0">Chat</h2>
 
                 <div id="chat-area"></div>
 
-                <input id="add-message" type="text">
+                <div id="message-sender" class="text-center p-2">
+                    <input id="add-message" class="mr-2" type="text">
 
-                <button id="submit-message" type="submit">Send</button>
-            </div>-->
+                    <button id="submit-message" type="submit">Send</button>
+                </div>
+            </div>
         </div>
     </body>
 

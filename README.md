@@ -36,10 +36,24 @@ An online multiplayer version of the game Rock, Paper, Scissors.
 
 * When they finally do receive a new opponent, their record of wins and losses will persist from before, but the new player will start with a value of 0 for each.
 
-## Still to Do
+## How to Talk to Your Opponent
 
-* I still need to finish a chat area in which both players can type and enter messages in order to communicate with each other.
+* When a user is assigned the role of either Player 1 or Player 2, a chat area will be displayed at the bottom of the page.
+
+* There will be an input field at the bottom of this, into which the user may enter whatever they wish to communicate to their opponent.
+
+* The user can send messages to their opponent either by clicking on the "Send" button or pressing ENTER while editing the input field.
+
+* The text in the input field will be cleared away each time the user sends a message.
+
+* When the number of messages overflows the amount of space the chat has for displaying them, the area will become scrollable so that it's possible to view all of the messages.
+
+* When either user enters a new message, both users' chat areas will automatically scroll to the bottom so as to display this newest message (assuming that there are already enough displayed to overflow the chat).
+
+* When a user leaves the game, all messages will be deleted from the database. They will continue to display for the other user (the one that stays), but they should not display for any new users joining the game. (Currently, this feature works only some of the time.)
 
 ## Bugs
 
-* There is code written in [game.js](assets/javascript/game.js) meant to reset the values of the variables in Firebase associated with a given player when their page unloads (when being refreshed, exited out of, etc.). For the most part, this works, but it may still be possible for their variables' values to persist if there's something odd/unexpected about how they leave the page. Should this happen again, they will need to be edited manually or the game will not work properly.
+1. There is code written in [game.js](assets/javascript/game.js) meant to reset the values of the variables in Firebase associated with a given player when their page unloads (when being refreshed, exited out of, etc.). This seems to be working better and better with each successive tweak, but it may still be possible for their variables' values to persist if there's something odd/unexpected about how they leave the page. Hopefully, this problem will prove to be solved now, but should it happen again, they will need to be edited manually or the game will not work properly.
+
+2. The chat messages stored in the Firebase database aren't always deleted when a user leaves the game.

@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    console.log("Weeweewee!");
-
     var config = {
         apiKey: "AIzaSyBGpS0HkvjevQ1EAm-D5-tM16hKJtGHnHc",
         authDomain: "rock-paper-scisso.firebaseapp.com",
@@ -30,14 +28,18 @@ $(document).ready(function () {
         assignedRole: "not a player",
         waitingForOpponent: false,
         rpsShot: false
-    }
+    };
 
     function startGame() {
         $("#start-div").addClass("d-none");
 
-        $("#wait-div").empty();
+        $("#wait-div").empty().addClass("d-none");
 
         $("#game-div").removeClass("d-none");
+
+        $("#chat-div").removeClass("d-none");
+
+        $(".push").removeClass("d-none");
     };
 
     function getHype(x) {
@@ -72,6 +74,8 @@ $(document).ready(function () {
         else {
             countDownText.text("Shoot!")
         };
+
+        countDownText.addClass("my-5 py-4");
 
         $("#wait-div").append(countDownText);
     };
@@ -112,11 +116,11 @@ $(document).ready(function () {
     function greetPlayer(x) {
         $("#start-div").addClass("d-none");
 
-        $("#wait-div").empty();
+        $("#wait-div").empty().removeClass("d-none");
 
         var letsStartText = $("<h2>");
 
-        letsStartText.text("Welcome to the game, Player " + x + "!")
+        letsStartText.text("Welcome to the game, Player " + x + "!").addClass("mt-5 pt-5");
 
         $("#wait-div").append(letsStartText);
 
@@ -124,11 +128,11 @@ $(document).ready(function () {
     };
 
     function itsATie() {
-        $("#wait-div").empty();
+        $("#wait-div").empty().removeClass("d-none");
 
         var tieText = $("<h2>");
 
-        tieText.text("It's a tie!")
+        tieText.text("It's a tie!").addClass("my-5 py-5");
 
         $("#wait-div").append(tieText);
 
@@ -136,7 +140,7 @@ $(document).ready(function () {
     }
 
     function youWin() {
-        $("#wait-div").empty();
+        $("#wait-div").empty().removeClass("d-none");
 
         var winText = $("<h2>");
 
@@ -145,7 +149,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            winText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + "! You win!")
+            winText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + "! You win!").addClass("mt-4");
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -153,7 +157,7 @@ $(document).ready(function () {
         }
 
         else {
-            winText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + "! You win!")
+            winText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + "! You win!").addClass("mt-4");
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
@@ -166,7 +170,7 @@ $(document).ready(function () {
     };
 
     function youLose() {
-        $("#wait-div").empty();
+        $("#wait-div").empty().removeClass("d-none");
 
         var loseText = $("<h2>");
 
@@ -175,7 +179,7 @@ $(document).ready(function () {
         var losses = $("<h2>");
 
         if (myGlobal.assignedRole === "Player 1") {
-            loseText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + ". You lose.");
+            loseText.text(myGlobal.player2Choice + " beats " + myGlobal.player1Choice.toLowerCase() + ". You lose.").addClass("mt-4");
 
             wins.text("Wins: " + myGlobal.player1Wins);
 
@@ -183,7 +187,7 @@ $(document).ready(function () {
         }
 
         else {
-            loseText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + ". You lose.");
+            loseText.text(myGlobal.player1Choice + " beats " + myGlobal.player2Choice.toLowerCase() + ". You lose.").addClass("mt-4");
 
             wins.text("Wins: " + myGlobal.player2Wins);
 
@@ -245,7 +249,6 @@ $(document).ready(function () {
 
     function choiceMade() {
         if ((myGlobal.player1Chosen) && (myGlobal.player2Chosen)) {
-            console.log("lalala");
             rpsShoot();
         }
 
@@ -260,13 +263,11 @@ $(document).ready(function () {
 
             waitGif.attr("src", "assets/images/loader.gif");
 
-            $("#wait-div").append(waitGif, waitText);
+            $("#wait-div").removeClass("d-none").append(waitGif, waitText);
         };
     };
 
     database.ref().on("value", function (snapshot) {
-        console.log(myGlobal);
-
         myGlobal.players = snapshot.val().players;
 
         myGlobal.player1 = snapshot.val().player1;
@@ -298,10 +299,6 @@ $(document).ready(function () {
         if ((myGlobal.player1Chosen) && (myGlobal.player2Chosen)) {
             rpsShoot();
         };
-
-        console.log(snapshot.val());
-
-        console.log(myGlobal);
     });
 
     $(window).on("unload", function () {
@@ -319,6 +316,8 @@ $(document).ready(function () {
             myGlobal.player1Losses = 0;
 
             setToGlobal();
+
+            database.ref().child("chatMessages").remove();
         }
 
         else if (myGlobal.assignedRole === "Player 2") {
@@ -335,6 +334,8 @@ $(document).ready(function () {
             myGlobal.player2Losses = 0;
 
             setToGlobal();
+
+            database.ref().child("chatMessages").remove();
         };
     });
 
@@ -354,17 +355,17 @@ $(document).ready(function () {
 
             var greetingText = $("<h2>");
 
-            greetingText.text("Welcome to the game, Player 1!").addClass("mb-0");
+            greetingText.text("Welcome to the game, Player 1!").addClass("mb-0 mt-5 pt-5");
 
             var waitText = $("<h2>");
 
-            waitText.text("Waiting for opponent...");
+            waitText.text("Waiting for opponent...").addClass("mb-5 pb-5");
 
             var loaderGif = $("<img>");
 
             loaderGif.attr("src", "assets/images/loader.gif");
 
-            $("#wait-div").append(greetingText, loaderGif, waitText);
+            $("#wait-div").removeClass("d-none").append(greetingText, loaderGif, waitText);
         }
 
         else if ((myGlobal.players === 1) && (!myGlobal.player2)) {
@@ -444,15 +445,42 @@ $(document).ready(function () {
         };
     });
 
-    /*database.ref().on("child_added", function(childSnapshot) {
-        //stuff
+    database.ref().child("chatMessages").limitToLast(10).on("child_added", function (snapshot) {
+        var returnedData = snapshot.val();
+
+        var userID = returnedData.userID;
+
+        var messageText = returnedData.messageText;
+
+        if (userID && messageText) {
+            var messageElement = $("<p>");
+
+            messageElement.text(userID + ": " + messageText).addClass("mx-2");
+
+            $("#chat-area").append(messageElement);
+
+            $("#chat-area").scrollTop($("#chat-area")[0].scrollHeight);
+        };
     });
 
     $("#submit-message").on("click", function (event) {
         event.preventDefault();
 
-        var newMessage = $("#add-message").val().trim();
+        if ((myGlobal.assignedRole === "Player 1") || (myGlobal.assignedRole === "Player 2")) {
+            var newMessage = {
+                userID: myGlobal.assignedRole,
+                messageText: $("#add-message").val().trim()
+            };
 
-        database.ref().push(newMessage);
-    });*/
+            database.ref().child("chatMessages").push(newMessage);
+
+            document.getElementById("add-message").value = "";
+        };
+    });
+
+    $("#add-message").keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#submit-message").click();
+        };
+    });
 });
