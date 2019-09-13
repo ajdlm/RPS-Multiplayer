@@ -2,6 +2,8 @@
 
 An online multiplayer version of the game Rock, Paper, Scissors.
 
+Deployed application at: https://ajdlm.github.io/rps-online/.
+
 ## How to Start
 
 * When the user loads the page, a single button reading "JOIN GAME" is displayed.
